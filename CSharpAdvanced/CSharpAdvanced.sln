@@ -12,6 +12,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Events", "Events\Events.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lambdas", "Lambdas\Lambdas.csproj", "{4EECC4E4-8565-4226-BB0E-DBA8C1F82E9E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtensionMethods", "ExtensionMethods\ExtensionMethods.csproj", "{CBB3F49B-3786-4D81-BC35-D8CC5A195E83}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,5 +44,9 @@ Global
 		{4EECC4E4-8565-4226-BB0E-DBA8C1F82E9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4EECC4E4-8565-4226-BB0E-DBA8C1F82E9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4EECC4E4-8565-4226-BB0E-DBA8C1F82E9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBB3F49B-3786-4D81-BC35-D8CC5A195E83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBB3F49B-3786-4D81-BC35-D8CC5A195E83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBB3F49B-3786-4D81-BC35-D8CC5A195E83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBB3F49B-3786-4D81-BC35-D8CC5A195E83}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
