@@ -31,6 +31,7 @@ namespace Events {
         }
     }
 
+    // custom event args
     class VideoEventArgs : EventArgs {
         public int Eta { get; set; }
     }
