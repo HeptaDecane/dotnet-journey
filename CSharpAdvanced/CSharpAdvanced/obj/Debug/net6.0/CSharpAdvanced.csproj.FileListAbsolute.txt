@@ -1,0 +1,15 @@
+/home/near/Alpha/dotnet-journey/CSharpAdvanced/CSharpAdvanced/bin/Debug/net6.0/CSharpAdvanced
+/home/near/Alpha/dotnet-journey/CSharpAdvanced/CSharpAdvanced/bin/Debug/net6.0/CSharpAdvanced.deps.json
+/home/near/Alpha/dotnet-journey/CSharpAdvanced/CSharpAdvanced/bin/Debug/net6.0/CSharpAdvanced.runtimeconfig.json
+/home/near/Alpha/dotnet-journey/CSharpAdvanced/CSharpAdvanced/bin/Debug/net6.0/CSharpAdvanced.dll
+/home/near/Alpha/dotnet-journey/CSharpAdvanced/CSharpAdvanced/bin/Debug/net6.0/CSharpAdvanced.pdb
+/home/near/Alpha/dotnet-journey/CSharpAdvanced/CSharpAdvanced/obj/Debug/net6.0/CSharpAdvanced.csproj.AssemblyReference.cache
+/home/near/Alpha/dotnet-journey/CSharpAdvanced/CSharpAdvanced/obj/Debug/net6.0/CSharpAdvanced.GeneratedMSBuildEditorConfig.editorconfig
+/home/near/Alpha/dotnet-journey/CSharpAdvanced/CSharpAdvanced/obj/Debug/net6.0/CSharpAdvanced.AssemblyInfoInputs.cache
+/home/near/Alpha/dotnet-journey/CSharpAdvanced/CSharpAdvanced/obj/Debug/net6.0/CSharpAdvanced.AssemblyInfo.cs
+/home/near/Alpha/dotnet-journey/CSharpAdvanced/CSharpAdvanced/obj/Debug/net6.0/CSharpAdvanced.csproj.CoreCompileInputs.cache
+/home/near/Alpha/dotnet-journey/CSharpAdvanced/CSharpAdvanced/obj/Debug/net6.0/CSharpAdvanced.dll
+/home/near/Alpha/dotnet-journey/CSharpAdvanced/CSharpAdvanced/obj/Debug/net6.0/refint/CSharpAdvanced.dll
+/home/near/Alpha/dotnet-journey/CSharpAdvanced/CSharpAdvanced/obj/Debug/net6.0/CSharpAdvanced.pdb
+/home/near/Alpha/dotnet-journey/CSharpAdvanced/CSharpAdvanced/obj/Debug/net6.0/CSharpAdvanced.genruntimeconfig.cache
+/home/near/Alpha/dotnet-journey/CSharpAdvanced/CSharpAdvanced/obj/Debug/net6.0/ref/CSharpAdvanced.dll
