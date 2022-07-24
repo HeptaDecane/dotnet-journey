@@ -9,20 +9,19 @@ namespace Events {
             Console.WriteLine("Encoding Video... {0}",Title);
             Thread.Sleep(5000);     // encoding time
             
-            // 3. raise the event
             OnVideoEncoded();
         }
 
         // 1. define a delegate
-        public delegate void VideoEncodedEventHandler(object src, EventArgs args);
-        
         // 2. define an event based on the delegate
+        // 3. raise the event
+        public delegate void VideoEncodedEventHandler(object src, EventArgs args);
         public event VideoEncodedEventHandler VideoEncoded;
-        
         protected virtual void OnVideoEncoded() {
             if (VideoEncoded != null) 
                 VideoEncoded(this, EventArgs.Empty);
         }
+        
         
         // another approach (built in Event Handler)
         public event EventHandler<VideoEventArgs> VideoEncoding;
