@@ -1,0 +1,9 @@
+# ide
+.idea/
+*/.idea/
+
+# build
+build/
+*/build/
+
+# dependencies
