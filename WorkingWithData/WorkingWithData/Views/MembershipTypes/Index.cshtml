@@ -1,0 +1,24 @@
+@model IEnumerable<WorkingWithData.Models.MembershipType>
+@{
+    ViewData["Title"] = "Memberships";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Membership Types</h1>
+</div>
+<hr/>
+<div>
+    <div class="list-group-flush">
+        @foreach (var membership in Model)
+        {
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">@membership.Tier</h5>
+                    <p class="card-text">Discount: @membership.DiscountPercentage%</p>
+                    <p class="card-text">Duration: @membership.DurationInMonths months</p>
+                </div>
+            </div>
+            <hr/>
+        }
+    </div>
+</div>
