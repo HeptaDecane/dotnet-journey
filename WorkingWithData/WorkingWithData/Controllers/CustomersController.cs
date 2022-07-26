@@ -24,6 +24,8 @@ public class CustomersController : Controller
 
     public async Task<ActionResult> Get(int id)
     {
+        if (id == 0)
+            return RedirectToAction("Index");
         var customer = await _customersService.GetAsync(id);
         var membershipType = await _membershipTypesService.GetAsync(customer.MembershipTypeId);
         var getCustomerViewModel = new GetCustomerViewModel() {
