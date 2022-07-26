@@ -5,7 +5,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// db settings from appsettings.json
 builder.Services.Configure<BookStoreDatabaseSettings>(builder.Configuration.GetSection("BookStoreDatabase"));
+
+// model CRUD services
 builder.Services.AddSingleton<BooksService>();
 builder.Services.AddSingleton<MembershipTypesService>();
 builder.Services.AddSingleton<CustomersService>();

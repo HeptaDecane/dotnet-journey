@@ -1,14 +1,21 @@
 @model WorkingWithData.ViewModels.GetCustomerViewModel;
 @{
-    ViewData["Title"] = "Customers Get";
+    ViewData["Title"] = "Customer";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Customers</h1>
+    <h1 class="display-4">@Model.Customer.Username</h1>
 </div>
 <div>
-    <h4>@Model.Customer.Username</h4>
-    <p>Membership: @Model.MembershipType.Tier</p>
-    <p>Discount: @Model.MembershipType.DiscountPercentage%</p>
+    <div class="card">
+      <div class="card-header">
+        Membership
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">@Model.MembershipType.Tier</h5>
+        <p class="card-text">Discount: @Model.MembershipType.DiscountPercentage%</p>
+        <p class="card-text">Duration: @Model.MembershipType.DurationInMonths months</p>
+      </div>
+    </div>
 </div>
 

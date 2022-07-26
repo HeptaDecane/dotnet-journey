@@ -1,13 +1,13 @@
 @model WorkingWithData.Models.Book
 @{
-    ViewData["Title"] = "Books Get";
+    ViewData["Title"] = "Book";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Books</h1>
+    <h1 class="display-4">@Model.BookName</h1>
 </div>
 <div>
-    <h4>@Model.BookName</h4>
     <p>Author: @Model.Author</p>
+    <p>Category: @Model.Category</p>
     <p>Price: @Model.Price$</p>
 </div>
