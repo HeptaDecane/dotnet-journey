@@ -1,4 +1,4 @@
-# dotnet-journey
+# DotNet Journey
 
 ### C# Topics
 - Classes & Interfaces
