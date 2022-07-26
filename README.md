@@ -1,2 +1,11 @@
 # dotnet-journey
-learning dotnet
+
+### C# Topics
+- Classes & Interfaces
+- Generics
+- Delegates
+- Lambda Expressions
+- Events
+- Extension Methods
+- LINQ
+- Async/Await & Tasks
