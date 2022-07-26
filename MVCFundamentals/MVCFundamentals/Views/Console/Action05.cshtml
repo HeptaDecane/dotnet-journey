@@ -5,4 +5,24 @@
 
 <div>
     <p class="lead">Movie: @Model.Movie.Title</p>
+    @if (Model.Customers.Count > 0){
+        <p>rentals:</p>
+        <ul>
+           @foreach (var customer in Model.Customers){
+               <li>@customer.Name</li>
+            }
+        </ul>
+    }
+    else{
+        <p>no rentals for the above movie</p>
+    }
+    
+    @*
+        comments go here
+    *@
+    
+    @{
+        // this is a C# codeblock
+        var className = Model.Customers.Count > 10 ? "popular" : null;
+    }
 </div>

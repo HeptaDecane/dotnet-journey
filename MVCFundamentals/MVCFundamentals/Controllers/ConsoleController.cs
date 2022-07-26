@@ -44,8 +44,7 @@ public class ConsoleController : Controller {
     }
     
     // view models
-    public ActionResult Action05()
-    {
+    public ActionResult Action05() {
         var movie = new Movie() {Id=42, Title = "Shrek"};
         var customers = new List<Customer> {
             new Customer(){Id=17, Name="Jim"},
