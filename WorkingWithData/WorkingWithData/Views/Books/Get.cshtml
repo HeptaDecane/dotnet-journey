@@ -1,0 +1,13 @@
+@model WorkingWithData.Models.Book
+@{
+    ViewData["Title"] = "Books Index";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Books</h1>
+</div>
+<div>
+    <h4>@Model.BookName</h4>
+    <p>Author: @Model.Author</p>
+    <p>Price: @Model.Price$</p>
+</div>
