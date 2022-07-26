@@ -33,21 +33,21 @@ db.MembershipTypes.insertMany([
     {
         _id: 1,
         Tier: "Silver",
-        SignupFee: 5.99,
+        SignUpFee: 5.99,
         DurationInMonths: 3,
         DiscountPercentage: 10 
     },
     {
         _id: 2,
         Tier: "Gold",
-        SignupFee: 7.99,
+        SignUpFee: 7.99,
         DurationInMonths: 6,
         DiscountPercentage: 15
     },
     {
         _id: 3,
         Tier: "Diamond",
-        SignupFee: 10.99,
+        SignUpFee: 10.99,
         DurationInMonths: 12,
         DiscountPercentage: 25
     }

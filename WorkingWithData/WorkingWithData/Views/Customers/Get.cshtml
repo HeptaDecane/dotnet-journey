@@ -1,0 +1,14 @@
+@model WorkingWithData.ViewModels.GetCustomerViewModel;
+@{
+    ViewData["Title"] = "Customers Get";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Customers</h1>
+</div>
+<div>
+    <h4>@Model.Customer.Username</h4>
+    <p>Membership: @Model.MembershipType.Tier</p>
+    <p>Discount: @Model.MembershipType.DiscountPercentage%</p>
+</div>
+

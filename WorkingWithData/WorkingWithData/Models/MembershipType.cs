@@ -9,7 +9,7 @@ public class MembershipType {
     
     public string Tier { get; set; }
     
-    public int SignUpFee { get; set; }
+    public double SignUpFee { get; set; }
     
     public int DurationInMonths { get; set; }
 

@@ -7,6 +7,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.Configure<BookStoreDatabaseSettings>(builder.Configuration.GetSection("BookStoreDatabase"));
 builder.Services.AddSingleton<BooksService>();
+builder.Services.AddSingleton<MembershipTypesService>();
+builder.Services.AddSingleton<CustomersService>();
+
 
 var app = builder.Build();
 

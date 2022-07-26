@@ -22,7 +22,7 @@ public class CustomersService
 
     public async Task<Customer> GetAsync(int id)
     {
-        return await _collection.Find(x => x.Id == id).SingleOrDefaultAsync();
+        return await _collection.Find(x => x.Id == id).FirstOrDefaultAsync();
     }
 
     public async Task CreateAsync(Customer customer)
