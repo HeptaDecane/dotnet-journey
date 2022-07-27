@@ -1,0 +1,31 @@
+﻿@model BuildingForms.Models.Customer
+@{
+    ViewData["Title"] = "Customers";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Customers</h1>
+</div>
+<hr/>
+<div>
+    @using (Html.BeginForm("Create", "Customers"))
+    {
+        <div class="mb-3">
+            @Html.LabelFor(m=>m.Username, new{@class="form-label"})
+            @Html.TextBoxFor(m=>m.Username, new{@class="form-control"})
+        </div>
+        <div class="mb-3">
+            @Html.LabelFor(m=>m.Name, new{@class="form-label"})
+            @Html.TextBoxFor(m=>m.Name, new{@class="form-control"})
+        </div>
+        <div class="mb-3">
+            @Html.LabelFor(m=>m.Email, new{@class="form-label"})
+            @Html.TextBoxFor(m=>m.Email, new{@class="form-control", @type="email"})
+        </div>
+        <div class="form-check">
+            @Html.LabelFor(m=>m.Subscribed, new{@class="form-check-label"})
+            @Html.CheckBoxFor(m=>m.Subscribed, new{@class="form-check-input"})
+        </div>
+        <button type="submit" class="btn btn-primary">save</button>
+    }
+</div>
