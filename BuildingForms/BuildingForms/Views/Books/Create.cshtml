@@ -1,0 +1,51 @@
+﻿@{
+    ViewData["Title"] = "Books";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Books</h1>
+</div>
+<hr/>
+<div>
+    <form action="/Books/Create" method="post">
+        <div class="mb-3">
+            <label for="title">Title</label>
+            <input type="text" class="form-control" name="Title" id="title"/>
+        </div>
+        <div class="mb-3">
+            <label for="author">Author</label>
+            <input type="text" class="form-control" name="Author" id="author"/>
+        </div>
+        <div class="mb-3">
+            <label for="category">Category</label>
+            <select class="form-select" name="Category" id="category">
+                <option value="" selected>select</option>
+                <option value="computer">Computer</option>
+                <option value="literature">Literature</option>
+                <option value="business">Business</option>
+                <option value="finance">Finance</option>
+                <option value="technology">Technology</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="stock">Stock</label>
+            <input type="number" class="form-control" name="Stock" id="stock"/>
+        </div>
+        <button class="btn btn-primary" type="submit">Save</button>
+    </form>
+    <hr/>
+    @model BuildingForms.Models.Book
+    @if (Model != null)
+    {
+        <div>
+            <p class="fw-bold">book: </p>
+            <pre>
+            Id: @Model.Id
+            Title: @Model.Title
+            Author: @Model.Author
+            Category: @Model.Category
+            Stock: @Model.Stock
+            </pre>
+        </div>
+    }
+</div>
