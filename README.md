@@ -22,3 +22,10 @@
 ### Working with Data
 - Database connection with MongoDB
 - CRUD Services
+- DB structure: `(BOOKS, MEMBERSHIP_TYPES, CUSROMERS(FK:MEMBERSHIP_TYPES)`
+- Index and Get routes
+
+### Building Forms
+- Model Forms (System.Web.Mvc.Html)
+- HTML forms
+- Model binding
