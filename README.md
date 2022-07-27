@@ -27,4 +27,5 @@
 
 ### Building Forms
 - Model Forms (System.Web.Mvc.Html)
-- HTML forms & Model binding
+- HTML forms
+- Model binding
