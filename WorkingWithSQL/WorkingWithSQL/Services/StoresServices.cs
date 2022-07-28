@@ -35,4 +35,15 @@ public class StoresServices
         
         return stores;
     }
+
+    public async Task<int> CreateAsync(Store store)
+    {
+        string query = $"insert into Stores(Name, Address, Pin, Phone, Email)" +
+                       $"values ('{store.Name}','{store.Address}','{store.Pin}','{store.Phone}','{store.Email}')";
+        SqlCommand command = new SqlCommand(query, _connection);
+        await _connection.OpenAsync();
+        int rowsAffected = await command.ExecuteNonQueryAsync();
+        _connection.Close();
+        return rowsAffected;
+    }
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using WorkingWithSQL.Models;
 using WorkingWithSQL.Services;
 
 namespace WorkingWithSQL.Controllers;
@@ -16,5 +17,19 @@ public class ProductsController : Controller
     {
         var products = await _productsServices.GetAsync();
         return View(products);
+    }
+
+    [HttpGet]
+    public ActionResult Create()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public async Task<ActionResult> Create(Product product)
+    {
+        int rowsAffected = await _productsServices.CreateAsync(product);
+        Console.WriteLine($"rows affected: {rowsAffected}");
+        return RedirectToAction("Index");
     }
 }

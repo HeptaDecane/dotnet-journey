@@ -4,8 +4,12 @@
 }
 <div class="text-center">
     <h1 class="display-4">Products</h1>
+    <div class="text-end">
+        <a class="link-primary" asp-action="Create">create</a>
+    </div>
 </div>
 <hr/>
+
 <div>
     <div class="list-group-flush">
         @foreach (var product in Model)

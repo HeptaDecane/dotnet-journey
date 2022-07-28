@@ -1,0 +1,33 @@
+﻿@{
+    ViewData["Title"] = "Stores";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Stores</h1>
+</div>
+<hr/>
+<div>
+    <form asp-controller="Stores" asp-action="Create" method="post">
+        <div class="mb-3">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" name="Name" id="name" required/>
+        </div>
+        <div class="mb-3">
+            <label for="address">Address</label>
+            <textarea class="form-control" name="Address" id="address" required></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="pin">PIN</label>
+            <input type="text" class="form-control" name="Pin" id="pin" required/>
+        </div>
+        <div class="mb-3">
+            <label for="phone">Phone</label>
+            <input type="text" class="form-control" name="Phone" id="phone" required/>
+        </div>
+        <div class="mb-3">
+            <label for="email">Email</label>
+            <input type="text" class="form-control" name="Email" id="email" required/>
+        </div>
+        <button class="btn btn-primary" type="submit">Save</button>
+    </form>
+</div>

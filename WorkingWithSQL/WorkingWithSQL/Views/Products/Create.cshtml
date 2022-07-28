@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "Products";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Products</h1>
+</div>
+<hr/>
+<div>
+    <form asp-controller="Products" asp-action="Create" method="post">
+        <div class="mb-3">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" name="Name" id="name" required/>
+        </div>
+        <div class="mb-3">
+            <label for="description">Description</label>
+            <textarea class="form-control" name="Description" id="description" required></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="category">Category</label>
+            <select class="form-select" name="Category" id="category" required>
+                <option value="" selected>select</option>
+                <option value="men`s clothing">Men's Clothing</option>
+                <option value="smartphones">Smartphones</option>
+                <option value="laptops">Laptops</option>
+                <option value="home decor">Home Decor</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="imageUrl">Image URL</label>
+            <input type="url" class="form-control" name="ImageUrl" id="imageUrl" required/>
+        </div>
+        <button class="btn btn-primary" type="submit">Save</button>
+    </form>
+</div>

@@ -18,21 +18,32 @@ public class ProductsServices
         List<Product> products = new List<Product>();
         SqlCommand command = new SqlCommand("select * from Products", _connection);
         await _connection.OpenAsync();
-        SqlDataReader reader = await command.ExecuteReaderAsync();
+        var reader = await command.ExecuteReaderAsync();
 
         while (await reader.ReadAsync())
         {
             products.Add(new Product()
             {
-                Id = Convert.ToInt32(reader["Id"]),
-                Name = reader["Name"].ToString(),
-                Description = reader["Description"].ToString(),
-                Category = reader["Category"].ToString(),
-                ImageUrl = reader["Image"].ToString()
+                Id = (int)reader["Id"],
+                Name = (string)reader["Name"],
+                Description = (string)reader["Description"],
+                Category = (string)reader["Category"],
+                ImageUrl = (string)reader["Image"]
             });
         }
         _connection.Close();
 
         return products;
+    }
+
+    public async Task<int> CreateAsync(Product product)
+    {
+        string query = $"insert into Products(Name, Description, Category, Image)" +
+                       $"values ('{product.Name}','{product.Description}','{product.Category}','{product.ImageUrl}')";
+        SqlCommand command = new SqlCommand(query, _connection);
+        await _connection.OpenAsync();
+        int rowsAffected = await command.ExecuteNonQueryAsync();
+        _connection.Close();
+        return rowsAffected;
     }
 }
