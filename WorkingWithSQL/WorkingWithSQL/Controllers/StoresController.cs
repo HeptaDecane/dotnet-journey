@@ -11,9 +11,9 @@ public class StoresController : Controller
         _storesServices = storesServices;
     }
     
-    public IActionResult Index()
+    public async Task<ActionResult> Index()
     {
-        var stores = _storesServices.Get();
+        var stores = await _storesServices.GetAsync();
         return View(stores);
     }
 }

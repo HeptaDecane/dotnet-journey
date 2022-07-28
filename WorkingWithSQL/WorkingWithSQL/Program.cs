@@ -7,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.Configure<DatabaseConfigs>(builder.Configuration.GetSection("DatabaseConfigs"));
 builder.Services.AddSingleton<StoresServices>();
+builder.Services.AddSingleton<ProductsServices>();
 
 var app = builder.Build();
 

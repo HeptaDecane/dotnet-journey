@@ -14,15 +14,14 @@ public class StoresServices
         _connection = new SqlConnection(options.Value.ConnectionString);
     }
 
-    public List<Store> Get()
+    public async Task<List<Store>> GetAsync()
     {
-        SqlCommand command = new SqlCommand("select * from Stores", _connection);
-        command.CommandType = CommandType.Text;
-        
-        _connection.Open();
-        SqlDataReader reader = command.ExecuteReader();
         List<Store> stores = new List<Store>();
-        while (reader.Read()) {
+        SqlCommand command = new SqlCommand("select * from Stores", _connection);
+        await _connection.OpenAsync();
+        SqlDataReader reader = await command.ExecuteReaderAsync();
+
+        while (await reader.ReadAsync()) {
             stores.Add(new Store() {
                 Id = Convert.ToInt32(reader["Id"]),
                 Name = reader["Name"].ToString(),
@@ -36,5 +35,4 @@ public class StoresServices
         
         return stores;
     }
-
 }
