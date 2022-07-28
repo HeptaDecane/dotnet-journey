@@ -1,0 +1,35 @@
+﻿@model WorkingWithSQL.Models.Store
+@{
+    ViewData["Title"] = "Store";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Store</h1>
+</div>
+<hr/>
+<div>
+    <form asp-controller="Stores" asp-action="Update" method="post">
+        <div class="mb-3">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" name="Name" id="name" value="@Model.Name" required/>
+        </div>
+        <div class="mb-3">
+            <label for="address">Address</label>
+            <textarea class="form-control" name="Address" id="address" required>@Model.Address</textarea>
+        </div>
+        <div class="mb-3">
+            <label for="pin">PIN</label>
+            <input type="text" class="form-control" name="Pin" id="pin" value="@Model.Pin" required/>
+        </div>
+        <div class="mb-3">
+            <label for="phone">Phone</label>
+            <input type="text" class="form-control" name="Phone" id="phone" value="@Model.Phone" required/>
+        </div>
+        <div class="mb-3">
+            <label for="email">Email</label>
+            <input type="text" class="form-control" name="Email" id="email" value="@Model.Email" required/>
+        </div>
+        <button class="btn btn-primary" type="submit">Save</button>
+        <input type="number" name="Id" id="id" value="@Model.Id" hidden/>
+    </form>
+</div>

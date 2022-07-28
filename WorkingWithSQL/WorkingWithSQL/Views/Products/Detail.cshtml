@@ -1,0 +1,31 @@
+﻿@model WorkingWithSQL.Models.Product
+@{
+    ViewData["Title"] = "Product";
+}
+
+<div class="text-center">
+    <h1 class="display-4">@Model.Name</h1>
+</div>
+<hr/>
+<div>
+    <img src="@Model.ImageUrl" alt="..." height="200px"/>
+    <p class="text-muted">[@Model.Category]</p>
+    <p>@Model.Description</p>
+</div>
+<hr>
+<div>
+    <a class="btn btn-outline-primary"
+       asp-controller="Products"
+       asp-action="Update"
+       asp-route-id="@Model.Id"
+    >
+        Edit
+    </a>
+    <a class="btn btn-outline-danger"
+       asp-controller="Products"
+       asp-action="Delete"
+       asp-route-id="@Model.Id"
+    >
+        Delete
+    </a>
+</div>

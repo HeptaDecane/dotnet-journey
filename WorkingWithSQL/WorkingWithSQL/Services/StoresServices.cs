@@ -36,11 +36,58 @@ public class StoresServices
         return stores;
     }
 
+    public async Task<Store> GetAsync(int id)
+    {
+        Store store = new Store();
+        string query = $"select * from Stores where Id={id}";
+        SqlCommand command = new SqlCommand(query, _connection);
+        await _connection.OpenAsync();
+        var reader = await command.ExecuteReaderAsync();
+        
+        if (await reader.ReadAsync()) {
+            store.Id = (int)reader["Id"];
+            store.Name = (string)reader["Name"];
+            store.Address = (string)reader["Address"];
+            store.Pin = (string)reader["Pin"];
+            store.Phone = (string)reader["Phone"];
+            store.Email = (string)reader["Email"];
+        }
+        _connection.Close();
+
+        return store;
+    }
+
     public async Task<int> CreateAsync(Store store)
     {
-        string query = $"insert into Stores(Name, Address, Pin, Phone, Email)" +
+        string query = $"insert into Stores(Name, Address, Pin, Phone, Email)\n" +
                        $"values ('{store.Name}','{store.Address}','{store.Pin}','{store.Phone}','{store.Email}')";
         SqlCommand command = new SqlCommand(query, _connection);
+        await _connection.OpenAsync();
+        int rowsAffected = await command.ExecuteNonQueryAsync();
+        _connection.Close();
+        return rowsAffected;
+    }
+
+    public async Task<int> UpdateAsync(Store store)
+    {
+        string query = $"update Stores set\n" +
+                       $"Name = '{store.Name}',\n" +
+                       $"Address = '{store.Address}',\n" +
+                       $"Pin = '{store.Pin}',\n" +
+                       $"Phone = '{store.Phone}',\n" +
+                       $"Email = '{store.Email}'\n" +
+                       $"where Id={store.Id}";
+        var command = new SqlCommand(query, _connection);
+        await _connection.OpenAsync();
+        int rowsAffected = await command.ExecuteNonQueryAsync();
+        _connection.Close();
+        return rowsAffected;
+    }
+
+    public async Task<int> DeleteAsync(int id)
+    {
+        string query = $"delete from Stores where Id={id}";
+        var command = new SqlCommand(query, _connection);
         await _connection.OpenAsync();
         int rowsAffected = await command.ExecuteNonQueryAsync();
         _connection.Close();

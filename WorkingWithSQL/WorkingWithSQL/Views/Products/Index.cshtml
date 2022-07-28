@@ -19,7 +19,13 @@
                     <h5 class="card-title">@product.Name</h5>
                     <h6 class="card-subtitle mb-2 text-muted">@product.Category</h6>
                     <p class="card-text">@product.Description</p>
-                    <a href="#" class="btn btn-primary">View</a>
+                    <a class="btn btn-primary"
+                       asp-controller="Products"
+                       asp-action="Detail"
+                       asp-route-id="@product.Id"
+                    >
+                        View
+                    </a>
                 </div>
             </div>
             <hr/>
