@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkingWithSQL", "WorkingWithSQL\WorkingWithSQL.csproj", "{673C90B6-A32F-4C83-9FEE-05D7E0DAD368}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{673C90B6-A32F-4C83-9FEE-05D7E0DAD368}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{673C90B6-A32F-4C83-9FEE-05D7E0DAD368}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{673C90B6-A32F-4C83-9FEE-05D7E0DAD368}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{673C90B6-A32F-4C83-9FEE-05D7E0DAD368}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
