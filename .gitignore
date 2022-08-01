@@ -1,6 +1,8 @@
 # ide
 .idea/
 */.idea/
+.vs
+*/.vs/
 
 # build
 build/
