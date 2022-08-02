@@ -1,0 +1,155 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+</div>
+<hr/>
+<div>
+    <ul class="list-group" id="todos">
+        @*
+        <li class="list-group-item">
+            <div class="fw-bold">
+                <input class="form-check-input" type="checkbox" value=""/>
+                <span> Subheading</span>
+            </div>
+            <span>Cras justo odio</span>
+            <span style="display:flex; justify-content:flex-end;">
+                <button class="btn btn-outline-danger btn-sm">Delete</button>
+            </span>
+        </li>
+        *@
+    </ul>
+</div>
+<hr/>
+<div>
+    <form id="addItemForm">
+        <div class="mb-3">
+          <input type="text" class="form-control" id="title" placeholder="Title">
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" id="description" rows="3"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Add</button>
+    </form>
+</div>
+
+
+@section Scripts{
+    <script>
+        function addItemToList(item){
+            let listItem = $("<li></li>").attr({
+                class: "list-group-item",
+                id: item.id
+            })
+            
+            let boldDiv = $("<div></div>").attr({
+                class: "fw-bold"
+            })
+            
+            let checkBox = $("<input/>").css({
+                margin: '0.25rem'
+            }).attr({
+                class: "form-check-input js-isCompleted",
+                type: "checkbox",
+                checked: item.isCompleted
+            })
+            
+            let titleSpan = $("<span></span>").attr({
+                class: "js-title"
+            }).text(item.title)
+            
+            let descriptionSpan = $("<span></span>").attr({
+                class: "js-description"
+            }).text(item.description)
+            
+            let btnSpan = $("<span></span>").css({
+                display: "flex",
+                justifyContent: "flex-end"
+            })
+            let delBtn = $("<button>Delete</button>").attr({
+                class: "btn btn-outline-danger btn-sm"
+            })
+            
+            btnSpan.append(delBtn)
+            boldDiv.append(checkBox)
+            boldDiv.append(titleSpan)
+            listItem.append(boldDiv)
+            listItem.append(descriptionSpan)
+            listItem.append(btnSpan)
+            
+            $("#todos").append(listItem)
+            
+            $(delBtn).click(function(e){
+                let listItem = $(this).parents().closest("li")
+                let id = $(listItem).attr("id")
+                $.ajax({
+                    url: `api/items/${id}`,
+                    method: 'DELETE'
+                }).done(function(data) {
+                    console.log(data)
+                    $(listItem).remove()
+                })
+            })
+            
+            $(checkBox).click(function(e){
+                let listItem = $(this).parents().closest("li")
+                
+                let id = $(listItem).attr("id")
+                let isCompleted = this.checked
+                let title = $(listItem).find(".js-title").text()
+                let description = $(listItem).find(".js-description").text()
+                
+                console.log(id, isCompleted, title, description)
+
+                $.ajax({
+                    url: `api/items/${id}`,
+                    method: 'PUT',
+                    contentType: 'application/json',
+                    data: JSON.stringify({
+                        id: id, 
+                        title: title,
+                        description: description,
+                        isCompleted: isCompleted
+                    })
+                }).done(function(data){
+                    console.log(data)
+                })
+            })
+        }
+        
+        $(document).ready(function(){
+            
+            $.ajax({
+                url: 'api/items',
+                method: 'GET'
+            }).done(function(data){
+                for(let item of data){
+                    console.log(item)
+                    addItemToList(item)
+                }
+            })
+            
+            $("#addItemForm").submit(function(e){
+                e.preventDefault();
+                let title = $("#title").val()
+                let description = $("#description").val()
+                $.ajax({
+                    url: 'api/items',
+                    method: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({
+                        title: title,
+                        description: description
+                    })
+                }).done(function(data){
+                    console.log(data)
+                    addItemToList(data)
+                    $("#addItemForm").trigger('reset')
+                })
+            })
+        })
+    </script>
+}
