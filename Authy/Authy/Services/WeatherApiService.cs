@@ -12,8 +12,8 @@ public class WeatherApiService
         var forecasts = new List<WeatherForecastDto>();
         try {
             var response = await _http.GetAsync($"{_baseUrl}/WeatherForecast");
-            if (response.IsSuccessStatusCode)
-                forecasts = await response.Content.ReadFromJsonAsync<List<WeatherForecastDto>>();
+            response.EnsureSuccessStatusCode();
+            forecasts = await response.Content.ReadFromJsonAsync<List<WeatherForecastDto>>();
         }
         catch (Exception e) {
             Console.WriteLine(e);
