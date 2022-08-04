@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using Authy;
 using Authy.Models;
 using Authy.Services;
@@ -17,6 +18,16 @@ builder.Services.AddSingleton<UsersServices>();
 builder.Services.AddAuthentication(User.AuthName).AddCookie(User.AuthName, options => {
     options.Cookie.Name = User.AuthName;
     options.LoginPath = "/users/login";
+    options.AccessDeniedPath = "/users/AccessDenied";
+});
+
+// TODO: policy based authorization
+builder.Services.AddAuthorization(options=>{
+    options.AddPolicy("Admin", policy=>{
+        policy.RequireClaim(ClaimTypes.Role, "ADMIN");
+    });
+    
+    // more policies can be added here... using options.AddPolicy()
 });
 
 var app = builder.Build();

@@ -45,12 +45,6 @@ public class UsersController : Controller
 
         return builder.ToString();
     }
-    
-    [Authorize]
-    public IActionResult Index()
-    {
-        return View();
-    }
 
     public ActionResult Register()
     {
@@ -102,8 +96,19 @@ public class UsersController : Controller
                 IsPersistent = true
             };
             await HttpContext.SignInAsync(Models.User.AuthName, principal, properties);
-            return RedirectToAction("Index");
+            return RedirectToAction("Index","Home");
         }
+        return View();
+    }
+
+    public async Task<IActionResult> Logout()
+    {
+        await HttpContext.SignOutAsync(Models.User.AuthName);
+        return RedirectToAction("Index", "Home");
+    }
+
+    public IActionResult AccessDenied()
+    {
         return View();
     }
 }

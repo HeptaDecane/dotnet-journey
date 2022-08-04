@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Authy.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Authy.Controllers;
 
@@ -13,7 +14,16 @@ public class HomeController : Controller
         _logger = logger;
     }
 
+    // default auth
+    [Authorize]
     public IActionResult Index()
+    {
+        return View();
+    }
+
+    // policy based auth
+    [Authorize("Admin")]
+    public IActionResult Settings()
     {
         return View();
     }
