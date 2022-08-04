@@ -13,7 +13,7 @@ builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection("A
 
 //services
 builder.Services.AddSingleton<UsersServices>();
-builder.Services.AddSingleton<WeatherApiService>();
+builder.Services.AddSingleton<WeatherApiServices>();
 
 // TODO: auth handlers
 builder.Services.AddAuthentication(User.AuthName).AddCookie(User.AuthName, options => {

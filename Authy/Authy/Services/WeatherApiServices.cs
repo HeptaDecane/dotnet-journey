@@ -2,7 +2,7 @@
 
 namespace Authy.Services;
 
-public class WeatherApiService
+public class WeatherApiServices
 {
     private readonly HttpClient _http = new HttpClient();
     private readonly string _baseUrl = "https://localhost:44372";

@@ -9,19 +9,19 @@ namespace Authy.Controllers;
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
-    private readonly WeatherApiService _weatherApiService;
+    private readonly WeatherApiServices _weatherApiServices;
 
-    public HomeController(ILogger<HomeController> logger, WeatherApiService weatherApiService)
+    public HomeController(ILogger<HomeController> logger, WeatherApiServices weatherApiServices)
     {
         _logger = logger;
-        _weatherApiService = weatherApiService;
+        _weatherApiServices = weatherApiServices;
     }
 
     // default auth
     [Authorize]
     public async Task<IActionResult> Index()
     {
-        var forecasts = await _weatherApiService.GetForecastsAsync();
+        var forecasts = await _weatherApiServices.GetForecastsAsync();
         return View(forecasts);
     }
 
