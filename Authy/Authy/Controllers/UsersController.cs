@@ -13,9 +13,11 @@ public class UsersController : Controller
 {
 
     private readonly UsersServices _usersServices;
+    private readonly WeatherApiServices _weatherApiServices;
 
-    public UsersController(UsersServices usersServices) {
+    public UsersController(UsersServices usersServices, WeatherApiServices weatherApiServices) {
         _usersServices = usersServices;
+        _weatherApiServices = weatherApiServices;
     }
     
     private string _generateSalt() {
@@ -73,21 +75,21 @@ public class UsersController : Controller
     }
     
     [HttpPost]
-    public async Task<ActionResult> Login(User user)
+    public async Task<ActionResult> Login(Auth auth)
     {
-        User userInDb = await _usersServices.GetAsync(user.Username);
-        if (userInDb.Id == 0) {
-            Console.WriteLine("username not found: "+user.Username);
+        User user = await _usersServices.GetAsync(auth.Username);
+        if (user.Id == 0) {
+            Console.WriteLine("username not found: "+auth.Username);
             return View();
         }
 
-        string password = _hash(user.Password, userInDb.Salt);
-        if (password == userInDb.Password)
+        string password = _hash(auth.Password, user.Salt);
+        if (password == user.Password)
         {
             var claims = new List<Claim> {
-                new Claim(ClaimTypes.Name, userInDb.Username),
-                new Claim(ClaimTypes.Role, userInDb.Role),
-                new Claim(ClaimTypes.GivenName, userInDb.Name)
+                new Claim(ClaimTypes.Name, user.Username),
+                new Claim(ClaimTypes.Role, user.Role),
+                new Claim(ClaimTypes.GivenName, user.Name)
             };
             var identity = new ClaimsIdentity(claims, Models.User.AuthName);
             var principal = new ClaimsPrincipal(identity);
@@ -96,6 +98,11 @@ public class UsersController : Controller
                 IsPersistent = true
             };
             await HttpContext.SignInAsync(Models.User.AuthName, principal, properties);
+            
+            // login to weather apis
+            var jwtResponse = await _weatherApiServices.Authenticate(auth);
+            Response.Cookies.Append(JwtResponse.AuthName,jwtResponse.AccessToken);
+            
             return RedirectToAction("Index","Home");
         }
         return View();
@@ -104,6 +111,7 @@ public class UsersController : Controller
     public async Task<IActionResult> Logout()
     {
         await HttpContext.SignOutAsync(Models.User.AuthName);
+        Response.Cookies.Delete(JwtResponse.AuthName);
         return RedirectToAction("Index", "Home");
     }
 

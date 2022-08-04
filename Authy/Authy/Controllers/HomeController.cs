@@ -21,7 +21,8 @@ public class HomeController : Controller
     [Authorize]
     public async Task<IActionResult> Index()
     {
-        var forecasts = await _weatherApiServices.GetForecastsAsync();
+        string accessToken = Request.Cookies[JwtResponse.AuthName] ?? "";
+        var forecasts = await _weatherApiServices.GetForecastsAsync(accessToken);
         return View(forecasts);
     }
 
