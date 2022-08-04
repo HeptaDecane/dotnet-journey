@@ -64,7 +64,7 @@ public class UsersController : Controller
         user.Password = _hash(user.Password, user.Salt);
         int rowsAffected = await _usersServices.CreateAsync(user);
         Console.WriteLine("rows affected: " + rowsAffected);
-        return View();
+        return RedirectToAction("Login");
     }
 
     public ActionResult Login()
