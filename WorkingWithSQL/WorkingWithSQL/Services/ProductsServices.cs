@@ -1,4 +1,5 @@
-﻿using System.Data.SqlClient;
+﻿using System.Data;
+using System.Data.SqlClient;
 using Microsoft.Extensions.Options;
 using WorkingWithSQL.Models;
 
@@ -16,7 +17,8 @@ public class ProductsServices
     public async Task<List<Product>> GetAsync()
     {
         List<Product> products = new List<Product>();
-        SqlCommand command = new SqlCommand("select * from Products", _connection);
+        SqlCommand command = new SqlCommand("GetProducts", _connection);
+        command.CommandType = CommandType.StoredProcedure;
         await _connection.OpenAsync();
         var reader = await command.ExecuteReaderAsync();
 
@@ -39,8 +41,9 @@ public class ProductsServices
     public async Task<Product> GetAsync(int id)
     {
         Product product = new Product();
-        string query = $"select * from Products where Id={id}";
-        var command = new SqlCommand(query, _connection);
+        var command = new SqlCommand("GetProductById", _connection);
+        command.CommandType = CommandType.StoredProcedure;
+        command.Parameters.AddWithValue("@Id", id);
         await _connection.OpenAsync();
         var reader = await command.ExecuteReaderAsync();
 
@@ -58,9 +61,13 @@ public class ProductsServices
     }
     public async Task<int> CreateAsync(Product product)
     {
-        string query = $"insert into Products(Name, Description, Category, Image)" +
-                       $"values ('{product.Name}','{product.Description}','{product.Category}','{product.ImageUrl}')";
-        SqlCommand command = new SqlCommand(query, _connection);
+        SqlCommand command = new SqlCommand("CreateProduct", _connection);
+        command.CommandType = CommandType.StoredProcedure;
+        command.Parameters.AddWithValue("@Name", product.Name);
+        command.Parameters.AddWithValue("@Description", product.Description);
+        command.Parameters.AddWithValue("@Category", product.Category);
+        command.Parameters.AddWithValue("@Image", product.ImageUrl);
+        
         await _connection.OpenAsync();
         int rowsAffected = await command.ExecuteNonQueryAsync();
         _connection.Close();
@@ -69,24 +76,26 @@ public class ProductsServices
 
     public async Task<int> UpdateAsync(Product product)
     {
-        string query = $"update Products set\n" +
-                       $"Name = '{product.Name}',\n" +
-                       $"Category = '{product.Category}',\n" +
-                       $"Description = '{product.Description}'," +
-                       $"Image = '{product.ImageUrl}'\n" +
-                       $"where Id={product.Id}";
-        var command = new SqlCommand(query, _connection);
+        var command = new SqlCommand("UpdateProductById", _connection);
+        command.CommandType = CommandType.StoredProcedure;
+        command.Parameters.AddWithValue("@Id", product.Id);
+        command.Parameters.AddWithValue("@Name", product.Name);
+        command.Parameters.AddWithValue("@Description", product.Description);
+        command.Parameters.AddWithValue("@Category", product.Category);
+        command.Parameters.AddWithValue("@Image", product.ImageUrl);
+        
         await _connection.OpenAsync();
         int rowsAffected = await command.ExecuteNonQueryAsync();
         _connection.Close();
         return rowsAffected;
-
     }
 
     public async Task<int> DeleteAsync(int id)
     {
-        string query = $"delete from Products where Id={id}";
-        var command = new SqlCommand(query, _connection);
+        var command = new SqlCommand("DeleteProductById", _connection);
+        command.CommandType = CommandType.StoredProcedure;
+        command.Parameters.AddWithValue("@Id", id);
+        
         await _connection.OpenAsync();
         int rowsAffected = await command.ExecuteNonQueryAsync();
         _connection.Close();

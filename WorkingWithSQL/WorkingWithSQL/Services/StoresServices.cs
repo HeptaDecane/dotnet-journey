@@ -17,7 +17,8 @@ public class StoresServices
     public async Task<List<Store>> GetAsync()
     {
         List<Store> stores = new List<Store>();
-        SqlCommand command = new SqlCommand("select * from Stores", _connection);
+        SqlCommand command = new SqlCommand("GetStores", _connection);
+        command.CommandType = CommandType.StoredProcedure;
         await _connection.OpenAsync();
         SqlDataReader reader = await command.ExecuteReaderAsync();
 
@@ -39,8 +40,9 @@ public class StoresServices
     public async Task<Store> GetAsync(int id)
     {
         Store store = new Store();
-        string query = $"select * from Stores where Id={id}";
-        SqlCommand command = new SqlCommand(query, _connection);
+        SqlCommand command = new SqlCommand("GetStoreById", _connection);
+        command.CommandType = CommandType.StoredProcedure;
+        command.Parameters.AddWithValue("@Id", id);
         await _connection.OpenAsync();
         var reader = await command.ExecuteReaderAsync();
         
@@ -59,9 +61,14 @@ public class StoresServices
 
     public async Task<int> CreateAsync(Store store)
     {
-        string query = $"insert into Stores(Name, Address, Pin, Phone, Email)\n" +
-                       $"values ('{store.Name}','{store.Address}','{store.Pin}','{store.Phone}','{store.Email}')";
-        SqlCommand command = new SqlCommand(query, _connection);
+        SqlCommand command = new SqlCommand("CreateStore", _connection);
+        command.CommandType = CommandType.StoredProcedure;
+        command.Parameters.AddWithValue("@Name", store.Name);
+        command.Parameters.AddWithValue("@Address", store.Address);
+        command.Parameters.AddWithValue("@Pin", store.Pin);
+        command.Parameters.AddWithValue("@Phone", store.Phone);
+        command.Parameters.AddWithValue("@Email", store.Email);
+        
         await _connection.OpenAsync();
         int rowsAffected = await command.ExecuteNonQueryAsync();
         _connection.Close();
@@ -70,14 +77,15 @@ public class StoresServices
 
     public async Task<int> UpdateAsync(Store store)
     {
-        string query = $"update Stores set\n" +
-                       $"Name = '{store.Name}',\n" +
-                       $"Address = '{store.Address}',\n" +
-                       $"Pin = '{store.Pin}',\n" +
-                       $"Phone = '{store.Phone}',\n" +
-                       $"Email = '{store.Email}'\n" +
-                       $"where Id={store.Id}";
-        var command = new SqlCommand(query, _connection);
+        var command = new SqlCommand("UpdateStoreById", _connection);
+        command.CommandType = CommandType.StoredProcedure;
+        command.Parameters.AddWithValue("@Id", store.Id);
+        command.Parameters.AddWithValue("@Name", store.Name);
+        command.Parameters.AddWithValue("@Address", store.Address);
+        command.Parameters.AddWithValue("@Pin", store.Pin);
+        command.Parameters.AddWithValue("@Phone", store.Phone);
+        command.Parameters.AddWithValue("@Email", store.Email);
+        
         await _connection.OpenAsync();
         int rowsAffected = await command.ExecuteNonQueryAsync();
         _connection.Close();
@@ -86,8 +94,10 @@ public class StoresServices
 
     public async Task<int> DeleteAsync(int id)
     {
-        string query = $"delete from Stores where Id={id}";
-        var command = new SqlCommand(query, _connection);
+        var command = new SqlCommand("DeleteStoreById", _connection);
+        command.CommandType = CommandType.StoredProcedure;
+        command.Parameters.AddWithValue("@Id", id);
+        
         await _connection.OpenAsync();
         int rowsAffected = await command.ExecuteNonQueryAsync();
         _connection.Close();
