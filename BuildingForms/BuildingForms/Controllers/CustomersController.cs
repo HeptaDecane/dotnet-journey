@@ -16,6 +16,7 @@ public class CustomersController : Controller {
     }
 
     [HttpPost]
+    [ValidateAntiForgeryToken]
     public ActionResult Create(Customer customer)
     {
         Console.WriteLine(customer);

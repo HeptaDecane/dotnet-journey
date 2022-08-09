@@ -26,6 +26,7 @@
             @Html.LabelFor(m=>m.Subscribed, new{@class="form-check-label"})
             @Html.CheckBoxFor(m=>m.Subscribed, new{@class="form-check-input"})
         </div>
+        @Html.AntiForgeryToken()
         <button type="submit" class="btn btn-primary">save</button>
     }
 </div>
