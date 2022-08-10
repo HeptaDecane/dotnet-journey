@@ -29,3 +29,10 @@
 - Model Forms (System.Web.Mvc.Html)
 - HTML forms
 - Model binding
+
+
+### Middlewares
+- [Part I](https://exceptionnotfound.net/middleware-in-asp-dotnet-6-intro-and-basics/)
+- [Part II](https://exceptionnotfound.net/middleware-in-asp-net-6-custom-middleware-classes/)
+- [Part III](https://exceptionnotfound.net/middleware-in-dotnet-6-order-of-operations/)
+- [Part IV](https://exceptionnotfound.net/middleware-in-dotnet-6-conditionally-adding-middleware-to-the-pipeline/)
