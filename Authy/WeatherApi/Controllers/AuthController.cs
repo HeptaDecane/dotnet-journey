@@ -81,7 +81,8 @@ public class AuthController : Controller
             {
                 new Claim(ClaimTypes.Name, user.Username),
                 new Claim(ClaimTypes.Role, user.Role),
-                new Claim(ClaimTypes.GivenName, user.Name)
+                new Claim(ClaimTypes.GivenName, user.Name),
+                new Claim("test_claim","this is a custom claim")
             };
             var expiresAt = DateTime.UtcNow.AddDays(30);
             
