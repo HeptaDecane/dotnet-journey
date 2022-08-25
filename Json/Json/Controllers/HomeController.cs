@@ -52,6 +52,7 @@ public class HomeController : Controller
         response = await _http.PostAsync($"{_baseUrl}/displayCards", content);
         jsonString = await response.Content.ReadAsStringAsync();
 
+
         return Ok();
     }
 }
