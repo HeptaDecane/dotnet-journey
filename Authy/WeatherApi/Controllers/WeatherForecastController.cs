@@ -23,6 +23,10 @@ public class WeatherForecastController : ControllerBase
     [Authorize]
     public IEnumerable<WeatherForecast> Get()
     {
+        // reading custom claim values
+        var claim = User.Claims.FirstOrDefault(claim => claim.Type == "test_claim");
+        Console.WriteLine(claim is null ?"claim not found" : $"{claim.Type}, {claim.Value}");
+
         return Enumerable.Range(1, 10).Select(index => new WeatherForecast
             {
                 Date = DateTime.Now.AddDays(index),

@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">DotNet Journey</h1>
+</div>
+<hr/>
+<div>
+    <form method="post" asp-controller="Home" asp-action="Index" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" name="Title" id="title" class="form-control"/>
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea name="Description" id="description" class="form-control"></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="image" class="form-label">Image</label>
+            <input type="file" class="form-control" name="Image" id="image"/>
+        </div>
+        <button class="btn btn-primary" type="submit">upload</button>
+    </form>
+    @if(ViewBag.Message is not null)
+    {
+        <div class="alert-info">
+            @ViewBag.Message
+        </div>
+    }
+</div>
