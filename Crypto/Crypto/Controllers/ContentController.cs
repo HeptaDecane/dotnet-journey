@@ -7,7 +7,7 @@ using System.Text;
 namespace Crypto.Controllers;
 
 [ApiController]
-public class AesController : Controller
+public class ContentController : Controller
 {
     private readonly string _key = "b14ca5898a4e4142aace2ea2143a2410";
     private readonly byte[] _iv = new byte[16];
@@ -53,7 +53,7 @@ public class AesController : Controller
             using (var memoryStream = new MemoryStream(bytes))
             {
                 using (var cryptoStream = new CryptoStream(memoryStream, decryptor, CryptoStreamMode.Read))
-                {
+                { 
                     using (var streamReader = new StreamReader(cryptoStream))
                     {
                         return Ok(streamReader.ReadToEnd());
