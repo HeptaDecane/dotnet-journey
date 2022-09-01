@@ -1,0 +1,15 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome @ViewData["user"]</h1>
+    <h5>session: @ViewData["sessionId"]</h5>
+</div>
+@section Scripts{
+    <script>
+        // can read if httpOnly is false
+        console.log("cookie",document.cookie)
+    </script>
+}
+ 
