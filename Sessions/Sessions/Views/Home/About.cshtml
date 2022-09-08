@@ -1,11 +1,12 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "About";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome @ViewData["user"]</h1>
-    <h5>session: @ViewData["sessionId"]</h5>
     <h6>visits: @TempData.Peek("Visits")</h6>
+    @{
+        TempData.Keep("Visits");
+    }
 </div>
 @section Scripts{
     <script>

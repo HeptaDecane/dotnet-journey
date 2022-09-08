@@ -15,27 +15,20 @@ namespace Sessions.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
+        
+        [TempData]
+        public int Visits { get; set; }
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
         }
 
-        private string Pad(string text)
-        {
-            var padding = 3 - ((text.Length + 3) % 4);
-            if (padding == 0)
-            {
-                return text;
-            }
-            return text + new string('=', padding);
-        }
-        
         [HttpGet]
         public IActionResult Index()
         {
             var sessionId = HttpContext.Session.Id;
             var user = HttpContext.Session.GetString("user");
+            Visits = Visits + 1;
             
             if(string.IsNullOrEmpty(user))
                 return RedirectToAction("Login", "Home");
@@ -43,6 +36,16 @@ namespace Sessions.Controllers
             ViewData["sessionId"] = sessionId;
             ViewData["user"] = user;
             
+            return View();
+        }
+
+        public IActionResult Contact()
+        {
+            return View();
+        }
+        
+        public IActionResult About()
+        {
             return View();
         }
 
