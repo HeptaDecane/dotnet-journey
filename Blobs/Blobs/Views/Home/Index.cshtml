@@ -1,0 +1,25 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container">
+    <label for="base64">base64: </label>
+    <input id="base64" type="text"/>
+</div>
+<hr/>
+<div class="text-center">
+    <img alt="base64" src="" id="image" width="640"/>
+</div>
+
+@section Scripts{
+    <script>
+        $(document).ready(main)
+        
+        function main(){
+            console.log("hi")
+            document.getElementById("base64").oninput = ev=>{
+                $("#image").attr("src",ev.target.value)
+            }
+        }
+    </script>
+}
